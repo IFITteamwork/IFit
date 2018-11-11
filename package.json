@@ -20,9 +20,11 @@
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
     "pug": "^2.0.0-rc.1"
-    "nunjucks": "2.4.2"
   },
   "devDependencies": {
-    "nodemon": "^1.8.1"
+    "mysql": "^2.16.0",
+    "nodemon": "^1.8.1",
+    "nunjucks": "^3.1.4",
+    "sequelize": "^4.41.1"
   }
 }
