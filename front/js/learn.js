@@ -18,6 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery';
+import videojs from 'video.js';
 
 const videoWidth = 600;
 const videoHeight = 500;
@@ -84,11 +85,18 @@ async function setupVideos() {
     video.crossOrigin= "Anonymous";
     video.src = guiState.videoURL;
 
-    return new Promise((resolve) => {
-        video.onloadedmetadata = () => {
-            resolve(video);
-        };
+    video.addEventListener('play',function () {
+       guiState.isPoseOut='true';
+       var ct = video.currentTime;
+
     });
+
+    video.addEventListener('pause',function () {
+       guiState.isPoseOut='false';
+    });
+
+
+    return video;
 }
 
 /**
@@ -97,7 +105,6 @@ async function setupVideos() {
 
 async function loadVideo() {
     const video = await setupVideos();
-    video.play();
 
     return video;
 }
@@ -105,6 +112,8 @@ async function loadVideo() {
 const guiState = {
     algorithm: 'single-pose',
     videoURL:'http://localhost:3000/videos/1',
+    videostate:'play',
+    isPoseOut:'true',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
         outputStride: 16,
@@ -220,9 +229,13 @@ function detectPoseInRealTime(camera, net) {
         // For each pose (i.e. person) detected in an image, loop through the poses
         // and draw the resulting skeleton and keypoints if over certain confidence
         // scores
+        var video =document.getElementById('video');
+
         poses.forEach(({score, keypoints}) => {
             if (score >= minPoseConfidence) {
-                console.log(keypoints);
+                if (guiState.isPoseOut=='true') {
+                    console.log(keypoints);
+                }
                 if (guiState.output.showPoints) {
                     drawKeypoints(keypoints, minPartConfidence, ctx);
                 }

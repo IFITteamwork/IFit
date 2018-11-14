@@ -34,6 +34,7 @@
     Loading the model...
 </div>
 
+<div style="display: flex; flex-wrap: nowrap">
 <div id='main' style='display:none'>
     <video id="camera" playsinline style=" -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
@@ -41,16 +42,23 @@
         transform: scaleX(-1);
         display: none;
         "
-           autoplay="true" muted="muted"
     >
     </video>
     <canvas id="output" />
 </div>
 <div id="main2">
-    <video id="video" controls="controls" width="800" height="600" :src="url">
+    <video id="video" controls="controls" width="800" height="600" :src="url"  >
         <source :src="url" type="video/mp4">
     </video>
 </div>
+</div>
+<div id="log">
+    <p>left arm</p>
+    <p>right arm</p>
+    <p>left leg</p>
+    <p>right head</p
+</div>
+<button type="button">play!</button>
 <!--<script src="https://unpkg.com/vue@2.0.1/dist/vue.js"></script>-->
 <script src="../js/learn.js"></script>
 <!--<script>-->
