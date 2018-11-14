@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Learn Poses</title>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+        }
+
+        .footer-text {
+            max-width: 600px;
+            text-align: center;
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .footer-text, .dg {
+                display: none;
+            }
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div id="info" style='display:none'>
+</div>
+<div id="loading">
+    Loading the model...
+</div>
+
+<div id='main' style='display:none'>
+    <video id="camera" playsinline style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        display: none;
+        "
+           autoplay="true" muted="muted"
+    >
+    </video>
+    <canvas id="output" />
+</div>
+<div id="main2">
+    <video id="video" controls="controls" width="800" height="600" :src="url">
+        <source :src="url" type="video/mp4">
+    </video>
+</div>
+<!--<script src="https://unpkg.com/vue@2.0.1/dist/vue.js"></script>-->
+<script src="../js/learn.js"></script>
+<!--<script>-->
+    <!--var app = new Vue({-->
+        <!--el: "#main2",-->
+        <!--data: {-->
+            <!--url: ''-->
+        <!--},-->
+        <!--methods: {-->
+            <!--// 模拟ajax-->
+            <!--loadUrl: function(){-->
+                <!--var _this = this;-->
+                <!--_this.url = 'http://localhost:3000/videos/1';-->
+            <!--}-->
+        <!--}-->
+    <!--})-->
+    <!--console.log(app);-->
+    <!--app.loadUrl();-->
+<!--</script>-->
+</body>
+
+</html>
