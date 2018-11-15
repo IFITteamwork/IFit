@@ -6,7 +6,7 @@ function getAngle(json,wholeMinScore,partMinScore,pos_end1,pos_key,pos_end3){
     var myjson=Data.keypoints;//读取关键点数组
     var trans=180/Math.PI;//弧度变角度
     if(Data.score<wholeMinScore){
-        console.log("全局置信度不足"+wholeMinScore);
+        //console.log("全局置信度不足"+wholeMinScore);
         return -1;
     }
     var pos1;

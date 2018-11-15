@@ -36,50 +36,15 @@ function isMobile() {
     return isAndroid() || isiOS();
 }
 
-async function setupCamera() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        throw new Error(
-            'Browser API navigator.mediaDevices.getUserMedia not available');
-    }
-
-    const camera = document.getElementById('video');
-    camera.width = videoWidth;
-    camera.height = videoHeight;
-
-    const mobile = isMobile();
-
-    // const stream = await navigator.mediaDevices.getUserMedia({
-    //     'audio': false,
-    //     'video': {
-    //         facingMode: 'user',
-    //         width: mobile ? undefined : videoWidth,
-    //         height: mobile ? undefined : videoHeight,
-    //     },
-    // });
-    // camera.srcObject = stream;
-    camera.crossOrigin= "Anonymous";
-    camera.src = guiState.videoURL;
-
-    return new Promise((resolve) => {
-        camera.onloadedmetadata = () => {
-            resolve(camera);
-        };
-    });
-}
-
-async function loadCamera() {
-    const camera = await setupCamera();
-    camera.play();
-
-    return camera;
-}
-
 /**
  * set up video whose source from back
  */
 
 async function setupVideos() {
     const video = document.getElementById('video');
+
+    video.width=videoWidth;
+    video.height=videoHeight;
 
     video.crossOrigin= "Anonymous";
     video.src = guiState.videoURL;
@@ -94,9 +59,10 @@ async function setupVideos() {
 
     video.addEventListener('ended',function () {
         guiState.videoState='ended';
+        console.log(totalPoses);
+        sendPoseJsonToBack(totalPoses);
         video.pause();
     });
-
 
 
     return video;
@@ -115,7 +81,7 @@ async function loadVideo() {
 const guiState = {
     algorithm: 'single-pose',
     videoURL:'http://localhost:3000/videos/1',
-    videoState:'play',
+    videoState:'pause',
     isPoseOut:'true',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
@@ -163,11 +129,22 @@ function setupFPS() {
 /**
  * send poses file to back
  */
-function sendPoseJsonToBack() {
-    $.ajax('http://localhost:3000/api/setVideoPoses',{
-
+function sendPoseJsonToBack(poses) {
+    $.ajax({
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json',
+        url: 'http://localhost:3000/api/setVideoPoses/1',
+        data: JSON.stringify(poses)
+    }).done(function (r) {
+        console.log('success!');
+    }).fail(function (jqXHR, textStatus) {
+        // Not 200:
+        alert('Error: ' + jqXHR.status);
     });
 }
+
+let totalPoses = [];
 
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
@@ -182,6 +159,7 @@ function detectPoseInRealTime(video, net) {
     canvas.width = videoWidth;
     canvas.height = videoHeight;
 
+
     async function poseDetectionFrame() {
         if (guiState.changeToArchitecture) {
             // Important to purge variables and free up GPU memory
@@ -194,55 +172,62 @@ function detectPoseInRealTime(video, net) {
             guiState.changeToArchitecture = null;
         }
 
-        // Begin monitoring code for frames per second
-        stats.begin();
 
         // Scale an image down to a certain factor. Too large of an image will slow
         // down the GPU
-        const imageScaleFactor = guiState.input.imageScaleFactor;
-        const outputStride = +guiState.input.outputStride;
+            // Begin monitoring code for frames per second
+            stats.begin();
 
-        let poses = [];
-        let minPoseConfidence;
-        let minPartConfidence;
+            const imageScaleFactor = guiState.input.imageScaleFactor;
+            const outputStride = +guiState.input.outputStride;
 
-        const pose = await guiState.net.estimateSinglePose(
-            video, imageScaleFactor, flipHorizontal, outputStride);
-        poses.push(pose);
+            let poses = [];
+            let minPoseConfidence;
+            let minPartConfidence;
 
-        minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
-        minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
+            const poseES = await guiState.net.estimateSinglePose(
+                video, imageScaleFactor, flipHorizontal, outputStride);
 
-        ctx.clearRect(0, 0, videoWidth, videoHeight);
-
-        if (guiState.output.showVideo) {
-            ctx.save();
-            ctx.scale(-1, 1);
-            ctx.translate(-videoWidth, 0);
-            ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
-            ctx.restore();
-        }
-
-        // For each pose (i.e. person) detected in an image, loop through the poses
-        // and draw the resulting skeleton and keypoints if over certain confidence
-        // scores
-        poses.forEach(({score, keypoints}) => {
-            if (score >= minPoseConfidence) {
-                console.log(keypoints);
-                if (guiState.output.showPoints) {
-                    drawKeypoints(keypoints, minPartConfidence, ctx);
-                }
-                if (guiState.output.showSkeleton) {
-                    drawSkeleton(keypoints, minPartConfidence, ctx);
-                }
-                if (guiState.output.showBoundingBox) {
-                    drawBoundingBox(keypoints, ctx);
-                }
+            let pose = {
+                'pose':poseES,
+                'time':video.currentTime
             }
-        });
+            poses.push(pose);
 
-        // End monitoring code for frames per second
+            minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
+            minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
+
+            ctx.clearRect(0, 0, videoWidth, videoHeight);
+
+            if (guiState.output.showVideo) {
+                ctx.save();
+                ctx.scale(-1, 1);
+                ctx.translate(-videoWidth, 0);
+                ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+                ctx.restore();
+            }
+
+            // For each pose (i.e. person) detected in an image, loop through the poses
+            // and draw the resulting skeleton and keypoints if over certain confidence
+            // scores
+            poses.forEach(({pose, time}) => {
+                if (guiState.videoState=='play'){
+                    console.log({pose,time});
+                    totalPoses.push({pose,time});
+                }
+                if (pose.score >= minPoseConfidence) {
+                    if (guiState.output.showPoints) {
+                        drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+                    }
+                    if (guiState.output.showSkeleton) {
+                        drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+                    }
+                }
+            });
+
+            // End monitoring code for frames per second
         stats.end();
+
 
         requestAnimationFrame(poseDetectionFrame);
     }
@@ -264,7 +249,7 @@ export async function bindPage() {
     let video;
 
     try {
-        video = await loadCamera();
+        video = await setupVideos();
     } catch (e) {
         let info = document.getElementById('info');
         info.textContent = 'cannot catch videos';

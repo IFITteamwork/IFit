@@ -168,7 +168,7 @@ function setupFPS() {
 async function getPosesFromBack() {
     let poses = null;
 
-    var jqxhr = await $.ajax('http://localhost:3000/api/getVideoPoses',{
+    var jqxhr = await $.ajax('http://localhost:3000/api/getVideoPoses/1',{
         dataType:'json',
         type:'GET'
     }).done((data)=>{
