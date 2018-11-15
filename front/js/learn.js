@@ -18,7 +18,7 @@ import * as posenet from '@tensorflow-models/posenet';
 import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery';
-import videojs from 'video.js';
+import {compareFrame} from "./compare";
 
 const videoWidth = 600;
 const videoHeight = 500;
@@ -86,14 +86,18 @@ async function setupVideos() {
     video.src = guiState.videoURL;
 
     video.addEventListener('play',function () {
-       guiState.isPoseOut='true';
-       var ct = video.currentTime;
-
+       guiState.videoState='play';
     });
 
     video.addEventListener('pause',function () {
-       guiState.isPoseOut='false';
+        guiState.videoState='pause';
     });
+
+    video.addEventListener('ended',function () {
+        guiState.videoState='ended';
+        video.pause();
+    });
+
 
 
     return video;
@@ -112,8 +116,8 @@ async function loadVideo() {
 const guiState = {
     algorithm: 'single-pose',
     videoURL:'http://localhost:3000/videos/1',
-    videostate:'play',
-    isPoseOut:'true',
+    videoState:'pause',
+    isPoseOut:'false',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
         outputStride: 16,
@@ -138,8 +142,6 @@ const guiState = {
     net: null,
 };
 
-var poses =null;
-
 /**
  * Sets up dat.gui controller on the top-right of the window
  */
@@ -161,22 +163,62 @@ function setupFPS() {
 
 /**
  * get poses saved at back
+ *
  */
-function getPosesFromBack() {
-    var jqxhr = $.ajax('http://localhost:3000/api/getVideoPoses',{
-        dataType:'jsonp'
+async function getPosesFromBack() {
+    let poses = null;
+
+    var jqxhr = await $.ajax('http://localhost:3000/api/getVideoPoses',{
+        dataType:'json',
+        type:'GET'
     }).done((data)=>{
         poses=data;
     }).fail((xhr,status)=>{
-        ajaxLog('失败: ' + xhr.status + ', 原因: ' + status);
-    })
+        console.log('fail: ' + xhr.status + ', by reason: ' + status);
+    });
+
+    return poses;
 }
+
+async function preprocessPoses(input) {
+    let timeList =[];
+
+    await input.poses.forEach(({pose,time})=>{
+       timeList.push(time);
+    });
+
+    return timeList;
+}
+
+function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
+    var notice;
+    let output = document.getElementById('output-txt');
+    output.textContent='';
+
+    if (guiState.videoState!='ended'){
+        let index = timeList.indexOf(video.currentTime);
+        if (index!=-1){
+            const videoPose = videoPoses.poses[index].pose;
+            compareFrame(cameraPose,videoPose,0.3);
+        }
+        else {
+            notice = compareFrame(videoPoses.poses[0].pose,cameraPose);
+        }
+
+        for (var key in notice){
+            output.textContent += key+': '+notice[key]+'\t' ;
+        }
+
+    }
+
+}
+
 
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
  */
-function detectPoseInRealTime(camera, net) {
+function detectPoseInRealTime(camera,net,inputPoses,timeList) {
     const canvas = document.getElementById('output');
     const ctx = canvas.getContext('2d');
     // since images are being fed from a webcam
@@ -184,6 +226,8 @@ function detectPoseInRealTime(camera, net) {
 
     canvas.width = videoWidth;
     canvas.height = videoHeight;
+
+    let video = document.getElementById('video');
 
     async function poseDetectionFrame() {
         if (guiState.changeToArchitecture) {
@@ -209,7 +253,7 @@ function detectPoseInRealTime(camera, net) {
         let minPoseConfidence;
         let minPartConfidence;
 
-        const pose = await guiState.net.estimateSinglePose(
+        const pose= await guiState.net.estimateSinglePose(
             camera, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
@@ -228,19 +272,19 @@ function detectPoseInRealTime(camera, net) {
 
         // For each pose (i.e. person) detected in an image, loop through the poses
         // and draw the resulting skeleton and keypoints if over certain confidence
-        // scores
-        var video =document.getElementById('video');
+        // score
 
-        poses.forEach(({score, keypoints}) => {
-            if (score >= minPoseConfidence) {
-                if (guiState.isPoseOut=='true') {
-                    console.log(keypoints);
-                }
+        poses.forEach((pose) => {
+            if (pose.score >= minPoseConfidence) {
+                // if (guiState.isPoseOut=='true') {
+                //     console.log(pose.keypoints);
+                // }
+                comparePoseByVideoCurrentTime(video,pose,inputPoses,timeList);
                 if (guiState.output.showPoints) {
-                    drawKeypoints(keypoints, minPartConfidence, ctx);
+                    drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                 }
                 if (guiState.output.showSkeleton) {
-                    drawSkeleton(keypoints, minPartConfidence, ctx);
+                    drawSkeleton(pose.keypoints, minPartConfidence, ctx);
                 }
             }
         });
@@ -270,14 +314,31 @@ export async function bindPage() {
     try {
         video = await loadVideo()
     }catch (e) {
-        console.log(e);
+        let info = document.getElementById('info');
+        info.textContent = 'cannot find video file from back';
+        info.style.display = 'block';
+        throw  e;
+    }
+
+    let poses;
+    let timeList;
+
+    try {
+        poses = await getPosesFromBack();
+        timeList = await preprocessPoses(poses);
+        console.log(timeList);
+    }
+    catch (e) {
+        let info = document.getElementById('info');
+        info.textContent = 'cannot find poses file of video';
+        info.style.display = 'block';
+        throw  e;
     }
 
     let camera;
 
     try {
         camera = await loadCamera();
-        // camera = await loadVideo();
     } catch (e) {
         let info = document.getElementById('info');
         info.textContent = 'this browser does not support video capture,' +
@@ -290,7 +351,7 @@ export async function bindPage() {
     setupGui([], net);
     setupFPS();
     try {
-        detectPoseInRealTime(camera, net);
+        detectPoseInRealTime(camera , net , poses,timeList);
     }
     catch (e) {
         throw e;

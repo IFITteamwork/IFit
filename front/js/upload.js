@@ -17,6 +17,7 @@
 import * as posenet from '@tensorflow-models/posenet';
 import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './util';
+import $ from 'jquery'
 
 //define video width
 const videoWidth = 600;
@@ -35,9 +36,6 @@ function isMobile() {
     return isAndroid() || isiOS();
 }
 
-/**
- * Loads a the camera
- */
 async function setupCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         throw new Error(
@@ -49,6 +47,7 @@ async function setupCamera() {
     camera.height = videoHeight;
 
     const mobile = isMobile();
+
     // const stream = await navigator.mediaDevices.getUserMedia({
     //     'audio': false,
     //     'video': {
@@ -58,11 +57,8 @@ async function setupCamera() {
     //     },
     // });
     // camera.srcObject = stream;
-
-    //const videoUrl = url.parse(__dirname+'/1.mp4');
     camera.crossOrigin= "Anonymous";
-    camera.src = 'http://localhost:3000/videos/1';
-    console.log(camera);
+    camera.src = guiState.videoURL;
 
     return new Promise((resolve) => {
         camera.onloadedmetadata = () => {
@@ -79,47 +75,48 @@ async function loadCamera() {
 }
 
 /**
- * set up video
+ * set up video whose source from back
  */
 
 async function setupVideos() {
+    const video = document.getElementById('video');
 
-    const camera = document.getElementById('video');
-    camera.width = videoWidth;
-    camera.height = videoHeight;
+    video.crossOrigin= "Anonymous";
+    video.src = guiState.videoURL;
 
-    const mobile = isMobile();
-    // const stream = await navigator.mediaDevices.getUserMedia({
-    //     'audio': false,
-    //     'video': {
-    //         facingMode: 'user',
-    //         width: mobile ? undefined : videoWidth,
-    //         height: mobile ? undefined : videoHeight,
-    //     },
-    // });
-    // camera.srcObject = stream;
-
-    //const videoUrl = url.parse(__dirname+'/1.mp4');
-    camera.crossOrigin= "Anonymous";
-    camera.src = 'http://localhost:3000/videos/1';
-    console.log(camera);
-
-    return new Promise((resolve) => {
-        camera.onloadedmetadata = () => {
-            resolve(camera);
-        };
+    video.addEventListener('play',function () {
+        guiState.videoState='play';
     });
+
+    video.addEventListener('pause',function () {
+        guiState.videoState='pause';
+    });
+
+    video.addEventListener('ended',function () {
+        guiState.videoState='ended';
+        video.pause();
+    });
+
+
+
+    return video;
 }
+
+/**
+ * Loads a video
+ */
 
 async function loadVideo() {
     const video = await setupVideos();
-    video.play();
 
     return video;
 }
 
 const guiState = {
     algorithm: 'single-pose',
+    videoURL:'http://localhost:3000/videos/1',
+    videoState:'play',
+    isPoseOut:'true',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
         outputStride: 16,
@@ -164,10 +161,19 @@ function setupFPS() {
 }
 
 /**
+ * send poses file to back
+ */
+function sendPoseJsonToBack() {
+    $.ajax('http://localhost:3000/api/setVideoPoses',{
+
+    });
+}
+
+/**
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
  */
-function detectPoseInRealTime(camera, net) {
+function detectPoseInRealTime(video, net) {
     const canvas = document.getElementById('output');
     const ctx = canvas.getContext('2d');
     // since images are being fed from a webcam
@@ -201,7 +207,7 @@ function detectPoseInRealTime(camera, net) {
         let minPartConfidence;
 
         const pose = await guiState.net.estimateSinglePose(
-            camera, imageScaleFactor, flipHorizontal, outputStride);
+            video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
@@ -213,7 +219,7 @@ function detectPoseInRealTime(camera, net) {
             ctx.save();
             ctx.scale(-1, 1);
             ctx.translate(-videoWidth, 0);
-            ctx.drawImage(camera, 0, 0, videoWidth, videoHeight);
+            ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
             ctx.restore();
         }
 
@@ -228,6 +234,9 @@ function detectPoseInRealTime(camera, net) {
                 }
                 if (guiState.output.showSkeleton) {
                     drawSkeleton(keypoints, minPartConfidence, ctx);
+                }
+                if (guiState.output.showBoundingBox) {
+                    drawBoundingBox(keypoints, ctx);
                 }
             }
         });
@@ -252,15 +261,13 @@ export async function bindPage() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('main').style.display = 'block';
 
-    let camera;
+    let video;
 
     try {
-        camera = await loadCamera();
-        // camera = await loadVideo();
+        video = await loadCamera();
     } catch (e) {
         let info = document.getElementById('info');
-        info.textContent = 'this browser does not support video capture,' +
-            'or this device does not have a camera';
+        info.textContent = 'cannot catch videos';
         info.style.display = 'block';
         throw e;
     }
@@ -268,7 +275,7 @@ export async function bindPage() {
     setupGui([], net);
     setupFPS();
     try {
-        detectPoseInRealTime(camera, net);
+        detectPoseInRealTime(video, net);
     }
     catch (e) {
         throw e;

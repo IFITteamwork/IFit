@@ -10,5 +10,11 @@ module.exports = {
         ctx.rest({
             videoSteam:videos.getVideoPoses()
         });
+    },
+    //jsonp api
+    'GET /api/setVideoPoses':async (ctx, next) => {
+        ctx.rest({
+            videoSteam:videos.getVideoPoses()
+        });
     }
 }
