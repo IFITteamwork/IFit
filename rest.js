@@ -10,6 +10,7 @@ module.exports = {
                 console.log(`Process API ${ctx.request.method} ${ctx.request.url}...`);
                 ctx.rest = (data) => {
                     ctx.response.type = 'application/json';
+                    ctx.set('Access-Control-Allow-Origin','*');
                     ctx.response.body = data;
                 }
                 try {
@@ -18,7 +19,7 @@ module.exports = {
                     console.log('Process API error...');
                     ctx.response.status = 400;
                     ctx.response.type = 'application/json';
-                    ctx.setHeader({'Access-Control-Allow-Origin':'*'});
+                    ctx.set('Access-Control-Allow-Origin','*');
                     ctx.response.body = {
                         code: e.code || 'internal:unknown_error',
                         message: e.message || ''
