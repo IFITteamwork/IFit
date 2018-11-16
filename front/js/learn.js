@@ -115,7 +115,7 @@ async function loadVideo() {
 
 const guiState = {
     algorithm: 'single-pose',
-    videoURL:'http://localhost:3000/videos/1',
+    videoURL:'http://localhost:3000/stream/videos/1',
     videoState:'pause',
     isPoseOut:'false',
     input: {
@@ -168,7 +168,7 @@ function setupFPS() {
 async function getPosesFromBack() {
     let poses = null;
 
-    var jqxhr = await $.ajax('http://localhost:3000/api/getVideoPoses/1',{
+    var jqxhr = await $.ajax('http://localhost:1234/api/getVideoPoses/1',{
         dataType:'json',
         type:'GET'
     }).done((data)=>{
@@ -177,13 +177,15 @@ async function getPosesFromBack() {
         console.log('fail: ' + xhr.status + ', by reason: ' + status);
     });
 
+    console.log(poses);
+
     return poses;
 }
 
-async function preprocessPoses(input) {
+async function preprocessPoses(poses) {
     let timeList =[];
 
-    await input.poses.forEach(({pose,time})=>{
+    await poses.forEach(({pose,time})=>{
        timeList.push(time);
     });
 
@@ -198,11 +200,11 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
     if (guiState.videoState!='ended'){
         let index = timeList.indexOf(video.currentTime);
         if (index!=-1){
-            const videoPose = videoPoses.poses[index].pose;
+            const videoPose = videoPoses[index].pose;
             compareFrame(cameraPose,videoPose,0.3);
         }
         else {
-            notice = compareFrame(videoPoses.poses[0].pose,cameraPose);
+            notice = compareFrame(videoPoses[0].pose,cameraPose);
         }
 
         for (var key in notice){

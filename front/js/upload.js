@@ -80,7 +80,7 @@ async function loadVideo() {
 
 const guiState = {
     algorithm: 'single-pose',
-    videoURL:'http://localhost:3000/videos/1',
+    videoURL:'http://localhost:3000/stream/videos/1',
     videoState:'pause',
     isPoseOut:'true',
     input: {
@@ -134,7 +134,7 @@ function sendPoseJsonToBack(poses) {
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
-        url: 'http://localhost:3000/api/setVideoPoses/1',
+        url: 'http://localhost:1234/api/setVideoPoses/1',
         data: JSON.stringify(poses)
     }).done(function (r) {
         console.log('success!');
