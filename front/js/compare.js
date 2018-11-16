@@ -61,7 +61,7 @@ export function compareFrame(json1,json2,rate=0.3){
     var notice={};
 
     var isPass =true;
-    for(var i=0;i<4;i++)
+    for(var i=0;i<2;i++)
     {
         if(Math.abs(angles[i][0]/angles[i][1]-1)<rate){
             notice[list[i]]=list[i]+' 误差小于 '+rate;

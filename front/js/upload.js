@@ -47,18 +47,18 @@ async function setupVideos() {
     video.height=videoHeight;
 
     video.crossOrigin= "Anonymous";
-    video.src = guiState.videoURL;
+    video.src = videoConfig.videoStreamURL+'/'+videoConfig.videoID;
 
     video.addEventListener('play',function () {
-        guiState.videoState='play';
+        videoConfig.videoState='play';
     });
 
     video.addEventListener('pause',function () {
-        guiState.videoState='pause';
+        videoConfig.videoState='pause';
     });
 
     video.addEventListener('ended',function () {
-        guiState.videoState='ended';
+        videoConfig.videoState='ended';
         console.log(totalPoses);
         sendPoseJsonToBack(totalPoses);
         video.pause();
@@ -78,14 +78,19 @@ async function loadVideo() {
     return video;
 }
 
-const guiState = {
+const videoConfig ={
+    videoID:'4',
+    videoStreamURL:'http://localhost:3000/stream/videos',
+    videoPoseAPI:'http://localhost:1234/api/setVideoPoses',
+    videoState:'ended',
+}
+
+const netState = {
     algorithm: 'single-pose',
-    videoURL:'http://localhost:3000/stream/videos/1',
-    videoState:'pause',
     isPoseOut:'true',
     input: {
-        mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
-        outputStride: 16,
+        mobileNetArchitecture: '1.00',
+        outputStride: 8,
         imageScaleFactor: 0.5,
     },
     singlePoseDetection: {
@@ -111,10 +116,10 @@ const guiState = {
  * Sets up dat.gui controller on the top-right of the window
  */
 function setupGui(cameras, net) {
-    guiState.net = net;
+    netState.net = net;
 
     if (cameras.length > 0) {
-        guiState.camera = cameras[0].deviceId;
+        netState.camera = cameras[0].deviceId;
     }
 }
 
@@ -134,7 +139,7 @@ function sendPoseJsonToBack(poses) {
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
-        url: 'http://localhost:1234/api/setVideoPoses/1',
+        url: videoConfig.videoPoseAPI+'/'+videoConfig.videoID,
         data: JSON.stringify(poses)
     }).done(function (r) {
         console.log('success!');
@@ -154,22 +159,22 @@ function detectPoseInRealTime(video, net) {
     const canvas = document.getElementById('output');
     const ctx = canvas.getContext('2d');
     // since images are being fed from a webcam
-    const flipHorizontal = true;
+    const flipHorizontal = false;
 
     canvas.width = videoWidth;
     canvas.height = videoHeight;
 
 
     async function poseDetectionFrame() {
-        if (guiState.changeToArchitecture) {
+        if (netState.changeToArchitecture) {
             // Important to purge variables and free up GPU memory
-            guiState.net.dispose();
+            netState.net.dispose();
 
             // Load the PoseNet model weights for either the 0.50, 0.75, 1.00, or 1.01
             // version
-            guiState.net = await posenet.load(+guiState.changeToArchitecture);
+            netState.net = await posenet.load(+netState.changeToArchitecture);
 
-            guiState.changeToArchitecture = null;
+            netState.changeToArchitecture = null;
         }
 
 
@@ -178,14 +183,14 @@ function detectPoseInRealTime(video, net) {
             // Begin monitoring code for frames per second
             stats.begin();
 
-            const imageScaleFactor = guiState.input.imageScaleFactor;
-            const outputStride = +guiState.input.outputStride;
+            const imageScaleFactor = netState.input.imageScaleFactor;
+            const outputStride = +netState.input.outputStride;
 
             let poses = [];
             let minPoseConfidence;
             let minPartConfidence;
 
-            const poseES = await guiState.net.estimateSinglePose(
+            const poseES = await netState.net.estimateSinglePose(
                 video, imageScaleFactor, flipHorizontal, outputStride);
 
             let pose = {
@@ -194,15 +199,15 @@ function detectPoseInRealTime(video, net) {
             }
             poses.push(pose);
 
-            minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
-            minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
+            minPoseConfidence = +netState.singlePoseDetection.minPoseConfidence;
+            minPartConfidence = +netState.singlePoseDetection.minPartConfidence;
 
             ctx.clearRect(0, 0, videoWidth, videoHeight);
 
-            if (guiState.output.showVideo) {
+            if (netState.output.showVideo) {
                 ctx.save();
-                ctx.scale(-1, 1);
-                ctx.translate(-videoWidth, 0);
+                // ctx.scale(-1, 1);
+                // ctx.translate(-videoWidth, 0);
                 ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
                 ctx.restore();
             }
@@ -211,15 +216,15 @@ function detectPoseInRealTime(video, net) {
             // and draw the resulting skeleton and keypoints if over certain confidence
             // scores
             poses.forEach(({pose, time}) => {
-                if (guiState.videoState=='play'){
+                if (videoConfig.videoState=='play'){
                     console.log({pose,time});
                     totalPoses.push({pose,time});
                 }
                 if (pose.score >= minPoseConfidence) {
-                    if (guiState.output.showPoints) {
+                    if (netState.output.showPoints) {
                         drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                     }
-                    if (guiState.output.showSkeleton) {
+                    if (netState.output.showSkeleton) {
                         drawSkeleton(pose.keypoints, minPartConfidence, ctx);
                     }
                 }

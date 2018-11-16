@@ -83,18 +83,18 @@ async function setupVideos() {
     const video = document.getElementById('video');
 
     video.crossOrigin= "Anonymous";
-    video.src = guiState.videoURL;
+    video.src = videoConfig.videoStreamURL+'/'+videoConfig.videoID;
 
     video.addEventListener('play',function () {
-       guiState.videoState='play';
+        videoConfig.videoState='play';
     });
 
     video.addEventListener('pause',function () {
-        guiState.videoState='pause';
+        videoConfig.videoState='pause';
     });
 
     video.addEventListener('ended',function () {
-        guiState.videoState='ended';
+        videoConfig.videoState='ended';
         video.pause();
     });
 
@@ -113,10 +113,15 @@ async function loadVideo() {
     return video;
 }
 
-const guiState = {
-    algorithm: 'single-pose',
-    videoURL:'http://localhost:3000/stream/videos/1',
+const videoConfig ={
+    videoID:'2',
+    videoStreamURL:'http://localhost:3000/stream/videos',
+    videoPoseAPI:'http://localhost:1234/api/getVideoPoses',
     videoState:'ended',
+}
+
+const netState = {
+    algorithm: 'single-pose',
     isPoseOut:'false',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
@@ -145,11 +150,16 @@ const guiState = {
 /**
  * Sets up dat.gui controller on the top-right of the window
  */
-function setupGui(cameras, net) {
-    guiState.net = net;
+function setupGui(video,cameras, net) {
+    netState.net = net;
+
+    let button = document.getElementById('play');
+    button.onclick = function () {
+        video.play();
+    };
 
     if (cameras.length > 0) {
-        guiState.camera = cameras[0].deviceId;
+        netState.camera = cameras[0].deviceId;
     }
 }
 
@@ -168,7 +178,7 @@ function setupFPS() {
 async function getPosesFromBack() {
     let poses = null;
 
-    var jqxhr = await $.ajax('http://localhost:1234/api/getVideoPoses/1',{
+    var jqxhr = await $.ajax(videoConfig.videoPoseAPI+'/'+videoConfig.videoID,{
         dataType:'json',
         type:'GET'
     }).done((data)=>{
@@ -200,7 +210,7 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
     output.textContent='';
 
     //if video is no ended
-    if (guiState.videoState!='ended'){
+    if (videoConfig.videoState!='ended'){
         let index;
         for(var i=lastPos;i<timeList.length;i++) {
             if (timeList[i] > video.currentTime) {
@@ -211,7 +221,7 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
         console.log(index);
         if (index!=-1){
             const videoPose = videoPoses[index].pose;
-            let result = compareFrame(cameraPose,videoPose,0.3);
+            let result = compareFrame(cameraPose,videoPose,0.5);
 
             console.log(result);
 
@@ -251,15 +261,15 @@ function detectPoseInRealTime(camera,net,inputPoses,timeList) {
     let video = document.getElementById('video');
 
     async function poseDetectionFrame() {
-        if (guiState.changeToArchitecture) {
+        if (netState.changeToArchitecture) {
             // Important to purge variables and free up GPU memory
-            guiState.net.dispose();
+            netState.net.dispose();
 
             // Load the PoseNet model weights for either the 0.50, 0.75, 1.00, or 1.01
             // version
-            guiState.net = await posenet.load(+guiState.changeToArchitecture);
+            netState.net = await posenet.load(+netState.changeToArchitecture);
 
-            guiState.changeToArchitecture = null;
+            netState.changeToArchitecture = null;
         }
 
         // Begin monitoring code for frames per second
@@ -267,23 +277,23 @@ function detectPoseInRealTime(camera,net,inputPoses,timeList) {
 
         // Scale an image down to a certain factor. Too large of an image will slow
         // down the GPU
-        const imageScaleFactor = guiState.input.imageScaleFactor;
-        const outputStride = +guiState.input.outputStride;
+        const imageScaleFactor = netState.input.imageScaleFactor;
+        const outputStride = +netState.input.outputStride;
 
         let poses = [];
         let minPoseConfidence;
         let minPartConfidence;
 
-        const pose= await guiState.net.estimateSinglePose(
+        const pose= await netState.net.estimateSinglePose(
             camera, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
 
-        minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
-        minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
+        minPoseConfidence = +netState.singlePoseDetection.minPoseConfidence;
+        minPartConfidence = +netState.singlePoseDetection.minPartConfidence;
 
         ctx.clearRect(0, 0, videoWidth, videoHeight);
 
-        if (guiState.output.showVideo) {
+        if (netState.output.showVideo) {
             ctx.save();
             ctx.scale(-1, 1);
             ctx.translate(-videoWidth, 0);
@@ -297,14 +307,14 @@ function detectPoseInRealTime(camera,net,inputPoses,timeList) {
 
         poses.forEach((pose) => {
             if (pose.score >= minPoseConfidence) {
-                // if (guiState.isPoseOut=='true') {
+                // if (netState.isPoseOut=='true') {
                 //     console.log(pose.keypoints);
                 // }
                 comparePoseByVideoCurrentTime(video,pose,inputPoses,timeList);
-                if (guiState.output.showPoints) {
+                if (netState.output.showPoints) {
                     drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                 }
-                if (guiState.output.showSkeleton) {
+                if (netState.output.showSkeleton) {
                     drawSkeleton(pose.keypoints, minPartConfidence, ctx);
                 }
             }
@@ -369,7 +379,7 @@ export async function bindPage() {
     }
 
 
-    setupGui([], net);
+    setupGui(video ,[], net);
     setupFPS();
     try {
         detectPoseInRealTime(camera , net , poses,timeList);
