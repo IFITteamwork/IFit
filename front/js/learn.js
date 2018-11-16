@@ -116,7 +116,7 @@ async function loadVideo() {
 const guiState = {
     algorithm: 'single-pose',
     videoURL:'http://localhost:3000/stream/videos/1',
-    videoState:'pause',
+    videoState:'ended',
     isPoseOut:'false',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
@@ -192,25 +192,44 @@ async function preprocessPoses(poses) {
     return timeList;
 }
 
+var lastPos =0;
+
 function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
-    var notice;
+    //output div
     let output = document.getElementById('output-txt');
     output.textContent='';
 
+    //if video is no ended
     if (guiState.videoState!='ended'){
-        let index = timeList.indexOf(video.currentTime);
+        let index;
+        for(var i=lastPos;i<timeList.length;i++) {
+            if (timeList[i] > video.currentTime) {
+                lastPos = index = i-1;
+                break;
+            }
+        }
+        console.log(index);
         if (index!=-1){
             const videoPose = videoPoses[index].pose;
-            compareFrame(cameraPose,videoPose,0.3);
-        }
-        else {
-            notice = compareFrame(videoPoses[0].pose,cameraPose);
-        }
+            let result = compareFrame(cameraPose,videoPose,0.3);
 
-        for (var key in notice){
-            output.textContent += key+': '+notice[key]+'\t' ;
-        }
+            console.log(result);
 
+            let notice=result.notice;
+            let isPass=result.isPass;
+
+            if (isPass){
+                video.play();
+            }
+            else{
+                video.pause();
+            }
+
+            for (var key in notice){
+                output.textContent += key+': '+notice[key]+'\t' ;
+            }
+
+        }
     }
 
 }

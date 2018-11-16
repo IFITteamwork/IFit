@@ -190,7 +190,7 @@ function detectPoseInRealTime(video, net) {
 
             let pose = {
                 'pose':poseES,
-                'time':video.currentTime
+                'time':(video.currentTime).toFixed(2)
             }
             poses.push(pose);
 

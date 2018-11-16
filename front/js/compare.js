@@ -60,16 +60,23 @@ export function compareFrame(json1,json2,rate=0.3){
 
     var notice={};
 
+    var isPass =true;
     for(var i=0;i<4;i++)
     {
         if(Math.abs(angles[i][0]/angles[i][1]-1)<rate){
             notice[list[i]]=list[i]+' 误差小于 '+rate;
         }
         else{
+            isPass=false;
             // console.log("动作相差过大，不认为相同");
             notice[list[i]]=list[i]+'误差过大';
         }
     }
 
-    return notice;
+    var result={};
+
+    result.isPass = isPass;
+    result.notice = notice;
+
+    return result;
 }
