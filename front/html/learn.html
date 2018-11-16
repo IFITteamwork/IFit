@@ -46,10 +46,11 @@
     </video>
     <canvas id="output" />
 </div>
-<div id="main2">
-    <video id="video" controls="controls" width="600" height="500" :src="url"  >
+<div id="main2" style='display:block'>
+    <video id="video" controls="controls" width="600" height="500" :src="url" style="display: none" >
         <source :src="url" type="video/mp4">
     </video>
+    <canvas id='vo'/>
 </div>
 </div>
 <div id="log">

@@ -114,7 +114,7 @@ async function loadVideo() {
 }
 
 const videoConfig ={
-    videoID:'2',
+    videoID:'6  ',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/getVideoPoses',
     videoState:'ended',
@@ -207,6 +207,7 @@ var lastPos =0;
 function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
     //output div
     let output = document.getElementById('output-txt');
+    let videoPose = null;
     output.textContent='';
 
     //if video is no ended
@@ -218,12 +219,12 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
                 break;
             }
         }
-        console.log(index);
+
         if (index!=-1){
-            const videoPose = videoPoses[index].pose;
+            videoPose = videoPoses[index].pose;
             let result = compareFrame(cameraPose,videoPose,0.5);
 
-            console.log(result);
+            console.log('currentTime: '+video.currentTime+'choose: '+timeList[index]);
 
             let notice=result.notice;
             let isPass=result.isPass;
@@ -238,10 +239,10 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
             for (var key in notice){
                 output.textContent += key+': '+notice[key]+'\t' ;
             }
-
         }
     }
 
+    return videoPose;
 }
 
 
@@ -249,16 +250,19 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
  */
-function detectPoseInRealTime(camera,net,inputPoses,timeList) {
+function detectPoseInRealTime(video,camera,net,inputPoses,timeList) {
     const canvas = document.getElementById('output');
     const ctx = canvas.getContext('2d');
     // since images are being fed from a webcam
     const flipHorizontal = true;
 
-    canvas.width = videoWidth;
-    canvas.height = videoHeight;
+    const vCanvas = document.getElementById('vo');
+    const vctx = vCanvas.getContext('2d');
 
-    let video = document.getElementById('video');
+    vCanvas.width = canvas.width =  videoWidth;
+    vCanvas.height = canvas.height = videoHeight;
+
+    // let video = document.getElementById('video');
 
     async function poseDetectionFrame() {
         if (netState.changeToArchitecture) {
@@ -292,6 +296,7 @@ function detectPoseInRealTime(camera,net,inputPoses,timeList) {
         minPartConfidence = +netState.singlePoseDetection.minPartConfidence;
 
         ctx.clearRect(0, 0, videoWidth, videoHeight);
+        vctx.clearRect(0,0,videoWidth,videoHeight);
 
         if (netState.output.showVideo) {
             ctx.save();
@@ -299,23 +304,36 @@ function detectPoseInRealTime(camera,net,inputPoses,timeList) {
             ctx.translate(-videoWidth, 0);
             ctx.drawImage(camera, 0, 0, videoWidth, videoHeight);
             ctx.restore();
+
+            vctx.save();
+            vctx.drawImage(video, 0 , 0, videoWidth, videoHeight);
+            vctx.restore();
         }
+
+
 
         // For each pose (i.e. person) detected in an image, loop through the poses
         // and draw the resulting skeleton and keypoints if over certain confidence
         // score
+
+        let videoPose;
 
         poses.forEach((pose) => {
             if (pose.score >= minPoseConfidence) {
                 // if (netState.isPoseOut=='true') {
                 //     console.log(pose.keypoints);
                 // }
-                comparePoseByVideoCurrentTime(video,pose,inputPoses,timeList);
+                videoPose = comparePoseByVideoCurrentTime(video,pose,inputPoses,timeList);
                 if (netState.output.showPoints) {
                     drawKeypoints(pose.keypoints, minPartConfidence, ctx);
                 }
                 if (netState.output.showSkeleton) {
                     drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+                }
+                
+                if (videoPose) {
+                    drawKeypoints(videoPose.keypoints,minPartConfidence,vctx);
+                    drawSkeleton(videoPose.keypoints, minPartConfidence,vctx);
                 }
             }
         });
@@ -382,7 +400,7 @@ export async function bindPage() {
     setupGui(video ,[], net);
     setupFPS();
     try {
-        detectPoseInRealTime(camera , net , poses,timeList);
+        detectPoseInRealTime(video,camera , net , poses,timeList);
     }
     catch (e) {
         throw e;
