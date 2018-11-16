@@ -64,12 +64,12 @@ export function compareFrame(json1,json2,rate=0.3){
     for(var i=0;i<2;i++)
     {
         if(Math.abs(angles[i][0]/angles[i][1]-1)<rate){
-            notice[list[i]]=list[i]+' 误差小于 '+rate;
+            notice[list[i]]='通过';
         }
         else{
             isPass=false;
             // console.log("动作相差过大，不认为相同");
-            notice[list[i]]=list[i]+'误差过大';
+            notice[list[i]]='误差大于'+rate;
         }
     }
 
