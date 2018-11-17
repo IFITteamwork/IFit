@@ -20,8 +20,8 @@ import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery';
 import {compareFrame} from "./compare";
 
-const videoWidth = 600;
-const videoHeight = 500;
+const videoWidth = 900;
+const videoHeight = 750;
 const stats = new Stats();
 
 function isAndroid() {
@@ -114,7 +114,7 @@ async function loadVideo() {
 }
 
 const videoConfig ={
-    videoID:'6  ',
+    videoID:'1 ',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/getVideoPoses',
     videoState:'ended',

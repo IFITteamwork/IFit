@@ -12,10 +12,17 @@ module.exports = {
     'POST /api/setVideoPoses/:id':async (ctx, next) => {
         console.log('set video poses from ${ctx.params.id}...');
         const poses = JSON.stringify(ctx.request.body,null,'  ');
-        // console.log(typeof poses);
-        // let poseJson = JSON.parse(poses);
         videos.setVideoPoses(ctx.params.id,poses);
         ctx.rest(
         );
+    },
+    'GET /api/getVideoStream/:id':async (ctx, next) => {
+
+    },
+    'GET /api/getVideoConfig/:id':async(ctx,next)=>{
+        console.log('get video config...');
+        ctx.rest(
+            videos.getVideoConfig(ctx.params.id)
+        )
     }
 }

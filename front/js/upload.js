@@ -79,7 +79,7 @@ async function loadVideo() {
 }
 
 const videoConfig ={
-    videoID:'6',
+    videoID:'7',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/setVideoPoses',
     videoState:'ended',

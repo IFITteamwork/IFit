@@ -23,5 +23,10 @@ module.exports={
         var poseToString = fs.readFileSync(dataPath, 'utf-8');
         var pose = JSON.parse(poseToString);
         return pose;
+    },
+    getVideoConfig:function (id) {
+        const filePath = path.resolve('./public/videos/'+id+'.mp4');
+        var stream = fs.createReadStream(filePath)
+        return JSON.parse(stream);
     }
 }

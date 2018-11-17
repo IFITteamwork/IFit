@@ -1,7 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96a47db7-07c6-4ff1-a684-1457cfb09ad7" name="Default" comment="" />
+    <list default="true" id="96a47db7-07c6-4ff1-a684-1457cfb09ad7" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/front/1.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/app.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/biao.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/body.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/contact.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/about.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/aos-animation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/aos.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/chocolat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/contact.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/menu.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/css/team.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/duzi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/font.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/font2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontello.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontello.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontello.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/fontello.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/gallery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/Thumbs.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/app.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/app1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/app_mb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/b-scrn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/banner1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/banner2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/banner3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/banner4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/body.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/c-arrows.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/class.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/class2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/duzi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/g7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal32.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/gal8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/inner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/leg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/model.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/scroll-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/t2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/t3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/t4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/top_up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/type1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/video.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/images/xiong.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/adapter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/aos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/aosindex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/easing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/jquery-2.2.3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/jquery.chocolat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/jquery.countup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/jquery.waypoints.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/move-top.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/js/responsiveslides.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/learn.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/leg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/services.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/type.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/xiong.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/说明.htm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/getVideoSteam.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/getVideoSteam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/js/learn.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/learn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/js/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/poses/1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/video.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -23,11 +134,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db.js">
+      <file leaf-file-name="learn.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/js/learn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+            <state relative-caret-position="468">
+              <caret line="116" column="14" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="14" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#704#758#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,8 +159,8 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="32" selection-start-column="32" selection-end-column="32" />
+            <state relative-caret-position="342">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -53,44 +168,39 @@
       <file leaf-file-name="video.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/video.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+            <state relative-caret-position="432">
+              <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parcel-start.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front/parcel-start.js">
+      <file leaf-file-name="说明.htm" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front/说明.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="306">
+              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="getVideoSteam.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/getVideoSteam.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="-143">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="upload.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/js/upload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="595">
+              <caret line="213" selection-start-line="213" selection-end-line="213" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#704#758#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,6 +212,11 @@
               <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="1.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/poses/1.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -152,17 +267,18 @@
         <option value="$PROJECT_DIR$/dist/api.js" />
         <option value="$PROJECT_DIR$/front/js/compare.js" />
         <option value="$PROJECT_DIR$/front/html/learn.html" />
-        <option value="$PROJECT_DIR$/front/js/upload.js" />
-        <option value="$PROJECT_DIR$/front/js/learn.js" />
         <option value="$PROJECT_DIR$/controller/api.js" />
         <option value="$PROJECT_DIR$/controller/getVideoSteam.js" />
         <option value="$PROJECT_DIR$/controller.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/video.js" />
         <option value="$PROJECT_DIR$/rest.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/controllers/api.js" />
         <option value="$PROJECT_DIR$/front/parcel-start.js" />
+        <option value="$PROJECT_DIR$/front/js/learn.js" />
+        <option value="$PROJECT_DIR$/front/js/upload.js" />
+        <option value="$PROJECT_DIR$/video.js" />
+        <option value="$PROJECT_DIR$/controllers/api.js" />
+        <option value="$PROJECT_DIR$/controllers/getVideoSteam.js" />
       </list>
     </option>
   </component>
@@ -183,8 +299,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="279" />
-    <option name="y" value="20" />
+    <option name="x" value="278" />
+    <option name="y" value="19" />
     <option name="width" value="1590" />
     <option name="height" value="1007" />
   </component>
@@ -193,6 +309,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,36 +317,45 @@
               <item name="IF" type="b2602c69:ProjectViewProjectNode" />
               <item name="IF" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IF" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IF" type="462c0819:PsiDirectoryNode" />
+              <item name="front" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/cxhrz/IFit/IF/front/js/learn.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/front" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\cxhrz\IFit\IF\front" />
+      <recent name="C:\Users\cxhrz\IFit\IF" />
+      <recent name="C:\Users\cxhrz\IFit\IF\public" />
+      <recent name="C:\Users\cxhrz\IFit\IF\public\videos" />
+      <recent name="C:\Users\cxhrz\IFit\IF\front\js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\cxhrz\IFit\IF\controllers" />
       <recent name="C:\Users\cxhrz\IFit\IF\dist" />
       <recent name="C:\Users\cxhrz\IFit\IF" />
       <recent name="C:\Users\cxhrz\IFit\IF\front" />
       <recent name="C:\Users\cxhrz\IFit\IF\front\js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\cxhrz\IFit\IF\public" />
-      <recent name="C:\Users\cxhrz\IFit\IF\public\videos" />
-      <recent name="C:\Users\cxhrz\IFit\IF" />
-      <recent name="C:\Users\cxhrz\IFit\IF\front\js" />
-      <recent name="C:\Users\cxhrz\IFit\IF\controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -259,35 +385,37 @@
       <workItem from="1542253270141" duration="17303000" />
       <workItem from="1542295532254" duration="4453000" />
       <workItem from="1542334992665" duration="17731000" />
-      <workItem from="1542362926310" duration="2240000" />
+      <workItem from="1542362926310" duration="4195000" />
+      <workItem from="1542452114489" duration="5210000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59494000" />
+    <option name="totallyTimeSpent" value="66659000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1753" height="954" extended-state="7" />
+    <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24956872" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936978" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32936978" />
-      <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936978" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,13 +430,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -426,20 +547,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/upload.95b88983.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app.js">
       <provider selected="true" editor-type-id="text-editor" />
@@ -462,11 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#video#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -474,10 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#704#743#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -491,39 +594,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/js/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#704#758#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/html/upload.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/js/learn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="158" column="6" selection-start-line="158" selection-start-column="6" selection-end-line="158" selection-end-column="6" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#704#758#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/getVideoSteam.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
         </state>
       </provider>
     </entry>
@@ -547,19 +621,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/poses/1.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public-files.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/front/app.js" />
+    <entry file="file://$PROJECT_DIR$/front/api.js" />
     <entry file="file://$PROJECT_DIR$/model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -567,59 +633,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Video.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="6" selection-end-line="16" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/parcel-start.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -630,10 +647,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/front/parcel-start.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="252">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/js/learn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="116" column="14" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#704#758#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/poses/1.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/js/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="213" selection-start-line="213" selection-end-line="213" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#704#758#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/getVideoSteam.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/说明.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
         </state>
       </provider>
     </entry>

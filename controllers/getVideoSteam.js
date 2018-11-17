@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const PassThrough = require('stream').PassThrough;
 
-var getVideo = async (ctx,next)=>{
+// var getVideo = async (ctx,next)=>{
+async function getVideo(ctx,next) {
+
     //const filePath = files.find({_id: id});
     const filePath = path.resolve(__dirname,'../public/videos/'+ctx.params.id+'.mp4');
 
