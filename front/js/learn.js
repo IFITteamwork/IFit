@@ -20,8 +20,8 @@ import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery';
 import {compareFrame} from "./compare";
 
-const videoWidth = 900;
-const videoHeight = 750;
+const videoWidth = 600;
+const videoHeight = 500;
 const stats = new Stats();
 
 function isAndroid() {
@@ -155,7 +155,12 @@ function setupGui(video,cameras, net) {
 
     let button = document.getElementById('play');
     button.onclick = function () {
-        video.play();
+        if(videoConfig.videoState=='pause'||videoConfig.videoState=='ended'){
+            video.play();
+        }
+        else{
+            video.pause();
+        }
     };
 
     if (cameras.length > 0) {
@@ -229,12 +234,12 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
             let notice=result.notice;
             let isPass=result.isPass;
 
-            if (isPass){
-                video.play();
-            }
-            else{
-                video.pause();
-            }
+            // if (isPass){
+            //     video.play();
+            // }
+            // else{
+            //     video.pause();
+            // }
 
             for (var key in notice){
                 output.textContent += key+': '+notice[key]+'\t' ;
@@ -296,7 +301,7 @@ function detectPoseInRealTime(video,camera,net,inputPoses,timeList) {
         minPartConfidence = +netState.singlePoseDetection.minPartConfidence;
 
         ctx.clearRect(0, 0, videoWidth, videoHeight);
-        vctx.clearRect(0,0,videoWidth,videoHeight);
+        //vctx.clearRect(0,0,videoWidth,videoHeight);
 
         if (netState.output.showVideo) {
             ctx.save();
@@ -355,8 +360,8 @@ export async function bindPage() {
     // Load the PoseNet model weights with architecture 0.75
     const net = await posenet.load(0.75);
 
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('main').style.display = 'block';
+    document.getElementById('video').style.display = 'none';
+    // document.getElementById('main').style.display = 'block';
 
     let video;
 

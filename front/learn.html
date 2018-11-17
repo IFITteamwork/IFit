@@ -83,10 +83,21 @@
 	<div style="position:absolute;width:100%;height:100%;">
     	<img src="background.png" width="100%" height="100%" />
 <div style="position:absolute;top:50px;left:30px">
-  	<embed src="1.mp4" width="640" height="480"/>
+	<video id="camera" playsinline style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        display: none;
+        "
+	>
+	</video>
+	<canvas id="output" />
   </div>
   <div style="position:absolute;top:50px;left:720px">
-  	<embed src="1.mp4" width="640" height="480"/>
+	  <video id="video" controls="controls" width="600" height="500" :src="url" style="display: none" >
+		  <source :src="url" type="video/mp4">
+	  </video>
+	  <canvas id='vo'/>
   </div>
 
 <div style="position:absolute;top:280px;left:-50px;width:800px;height:20px">
@@ -99,9 +110,16 @@
 			<i class="fa fa-caret-right" aria-hidden="true"></i>
 		</a>
 	</div>
-				
-</div>
-</div>
 
+	<div id="log">
+		<p>output</p>
+		<div id='output-txt'></div>
+	</div>
+	<button type="button" id="play">play!</button>
+
+</div>
+		<div id="info" style='display:none'></div>
+</div>
+<script src="./js/learn.js"></script>
 </body>
 </html>

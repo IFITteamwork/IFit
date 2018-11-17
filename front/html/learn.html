@@ -35,7 +35,7 @@
 </div>
 
 <div style="display: flex; flex-wrap: nowrap">
-<div id='main' style='display:none'>
+<div id='main'>
     <video id="camera" playsinline style=" -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
@@ -47,7 +47,8 @@
     <canvas id="output" />
 </div>
 <div id="main2" style='display:block'>
-    <video id="video" controls="controls" width="600" height="500" :src="url" style="display: none" >
+    <!--style="display: none" -->
+    <video id="video" controls="controls" width="600" height="500" :src="url" style="display: none">
         <source :src="url" type="video/mp4">
     </video>
     <canvas id='vo'/>
