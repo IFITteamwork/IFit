@@ -26,7 +26,8 @@ module.exports={
     },
     getVideoConfig:function (id) {
         const filePath = path.resolve('./public/videos/'+id+'.mp4');
-        var stream = fs.createReadStream(filePath)
-        return JSON.parse(stream);
+        // var stream = fs.createReadStream(filePath)
+        let stat = fs.statSync(filePath)
+        return stat;
     }
 }

@@ -20,8 +20,10 @@ import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery';
 import {compareFrame} from "./compare";
 
-const videoWidth = 600;
-const videoHeight = 500;
+const cameraWidth = 900;
+const cameraHeight = 750;
+const videoWidth = 420;
+const videoHeight = 750;
 const stats = new Stats();
 
 function isAndroid() {
@@ -46,8 +48,8 @@ async function setupCamera() {
     }
 
     const camera = document.getElementById('camera');
-    camera.width = videoWidth;
-    camera.height = videoHeight;
+    camera.width = cameraWidth;
+    camera.height = cameraHeight;
 
     const mobile = isMobile();
 
@@ -55,8 +57,8 @@ async function setupCamera() {
         'audio': false,
         'video': {
             facingMode: 'user',
-            width: mobile ? undefined : videoWidth,
-            height: mobile ? undefined : videoHeight,
+            width: mobile ? undefined : cameraWidth,
+            height: mobile ? undefined : cameraHeight,
         },
     });
     camera.srcObject = stream;
@@ -114,7 +116,7 @@ async function loadVideo() {
 }
 
 const videoConfig ={
-    videoID:'1 ',
+    videoID:'9',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/getVideoPoses',
     videoState:'ended',
@@ -122,6 +124,7 @@ const videoConfig ={
 
 const netState = {
     algorithm: 'single-pose',
+    windowRadius:3,
     isPoseOut:'false',
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
@@ -209,11 +212,14 @@ async function preprocessPoses(poses) {
 
 var lastPos =0;
 
+
 function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
     //output div
     let output = document.getElementById('output-txt');
     let videoPose = null;
     output.textContent='';
+
+    let windowRadius = netState.windowRadius;
 
     //if video is no ended
     if (videoConfig.videoState!='ended'){
@@ -226,13 +232,28 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
         }
 
         if (index!=-1){
-            videoPose = videoPoses[index].pose;
-            let result = compareFrame(cameraPose,videoPose,0.5);
+            var leftIndex = index-windowRadius>0? index-windowRadius:0;
+            var rightIndex = index+windowRadius<timeList.length-1? index+windowRadius:timeList.length-1;
 
-            console.log('currentTime: '+video.currentTime+'choose: '+timeList[index]);
+            let notice;
+            let isPass = false;
 
-            let notice=result.notice;
-            let isPass=result.isPass;
+            for(var i=leftIndex;i<=rightIndex;i++){
+                videoPose = videoPoses[i].pose;
+                let result = compareFrame(cameraPose,videoPose,0.5);
+
+                // notice=result.notice;
+                isPass=result.isPass;
+
+                if (isPass){
+                    break;
+                }
+
+            }
+
+            // console.log('currentTime: '+video.currentTime+'choose: '+timeList[index]);
+
+
 
             // if (isPass){
             //     video.play();
@@ -241,9 +262,9 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
             //     video.pause();
             // }
 
-            for (var key in notice){
-                output.textContent += key+': '+notice[key]+'\t' ;
-            }
+            // for (var key in notice){
+            //     output.textContent += key+': '+notice[key]+'\t' ;
+            // }
         }
     }
 
@@ -264,8 +285,10 @@ function detectPoseInRealTime(video,camera,net,inputPoses,timeList) {
     const vCanvas = document.getElementById('vo');
     const vctx = vCanvas.getContext('2d');
 
-    vCanvas.width = canvas.width =  videoWidth;
-    vCanvas.height = canvas.height = videoHeight;
+    canvas.width = cameraWidth;
+    canvas.height= cameraHeight;
+    vCanvas.width = videoWidth;
+    vCanvas.height = videoHeight;
 
     // let video = document.getElementById('video');
 
@@ -300,14 +323,14 @@ function detectPoseInRealTime(video,camera,net,inputPoses,timeList) {
         minPoseConfidence = +netState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +netState.singlePoseDetection.minPartConfidence;
 
-        ctx.clearRect(0, 0, videoWidth, videoHeight);
+        ctx.clearRect(0, 0, cameraWidth, cameraHeight);
         //vctx.clearRect(0,0,videoWidth,videoHeight);
 
         if (netState.output.showVideo) {
             ctx.save();
             ctx.scale(-1, 1);
-            ctx.translate(-videoWidth, 0);
-            ctx.drawImage(camera, 0, 0, videoWidth, videoHeight);
+            ctx.translate(-cameraWidth, 0);
+            ctx.drawImage(camera, 0, 0, cameraWidth, cameraHeight);
             ctx.restore();
 
             vctx.save();

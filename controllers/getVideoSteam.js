@@ -3,16 +3,15 @@ const path = require('path');
 const PassThrough = require('stream').PassThrough;
 
 // var getVideo = async (ctx,next)=>{
-async function getVideo(ctx,next) {
+async function getVideoStream(ctx,next) {
 
     //const filePath = files.find({_id: id});
     const filePath = path.resolve(__dirname,'../public/videos/'+ctx.params.id+'.mp4');
 
     let stat = fs.statSync(filePath);
     let fileSize = stat.size;
-    console.log(fileSize);
     let range = ctx.request.headers.range;
-    console.log(range);
+
     if (range){
         let parts = range.replace(/bytes=/, "").split("-");
         let start = parseInt(parts[0], 10);
@@ -33,7 +32,6 @@ async function getVideo(ctx,next) {
         ctx.body= file;
         ctx.status = 206;
         ctx.response.set(head);
-
     }
     else{
         let head = {
@@ -42,11 +40,11 @@ async function getVideo(ctx,next) {
         };
         ctx.response.status=200;
         ctx.response.head = head;
-        fs.createReadStream(filePath);
+        ctx.body = fs.createReadStream(filePath);
     }
 
 };
 
 module.exports = {
-    'GET /stream/videos/:id':getVideo
+    'GET /stream/videos/:id':getVideoStream
 };

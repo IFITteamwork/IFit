@@ -80,7 +80,7 @@
 			<!--//top-bar-->
 		</header>
 	</div>
-	<div style="position:absolute;width:100%;height:100%;">
+	<div style="position:absolute;width:100%;height:100%; display: block">
     	<img src="background.png" width="100%" height="100%" />
 <div style="position:absolute;top:50px;left:30px">
 	<video id="camera" playsinline style=" -moz-transform: scaleX(-1);
@@ -93,17 +93,18 @@
 	</video>
 	<canvas id="output" />
   </div>
-  <div style="position:absolute;top:50px;left:720px">
-	  <video id="video" controls="controls" width="600" height="500" :src="url" style="display: none" >
+  <div style="position:absolute;top:50px;left:900px">
+	  <video id="video" controls="controls" width="700" height="500" :src="url" style="display: none" >
 		  <source :src="url" type="video/mp4">
 	  </video>
 	  <canvas id='vo'/>
   </div>
 
-<div style="position:absolute;top:280px;left:-50px;width:800px;height:20px">
+<div style="position:absolute;top:580px;left:-50px;width:800px;height:20px">
  
-	<div class="banner-info" >
-		<a>教学模式
+	<div class="banner-info">
+		<a id='play'>教学模式
+			<!--<button type="button" id="play">play!</button>-->
 			<i class="fa fa-caret-right" aria-hidden="true"></i>
 		</a>
 		<a>练习模式
@@ -115,10 +116,10 @@
 		<p>output</p>
 		<div id='output-txt'></div>
 	</div>
-	<button type="button" id="play">play!</button>
 
 </div>
 		<div id="info" style='display:none'></div>
+
 </div>
 <script src="./js/learn.js"></script>
 </body>

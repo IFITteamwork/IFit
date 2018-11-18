@@ -19,9 +19,10 @@ import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery'
 
-//define video width
-const videoWidth = 600;
-const videoHeight = 500;
+const cameraWidth = 900;
+const cameraHeight = 750;
+const videoWidth = 420;
+const videoHeight = 750;
 const stats = new Stats();
 
 function isAndroid() {
@@ -79,7 +80,7 @@ async function loadVideo() {
 }
 
 const videoConfig ={
-    videoID:'7',
+    videoID:'9',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/setVideoPoses',
     videoState:'ended',
@@ -89,8 +90,8 @@ const netState = {
     algorithm: 'single-pose',
     isPoseOut:'true',
     input: {
-        mobileNetArchitecture: '1.00',
-        outputStride: 8,
+        mobileNetArchitecture: '0.75',
+        outputStride: 16,
         imageScaleFactor: 0.5,
     },
     singlePoseDetection: {
