@@ -2,15 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96a47db7-07c6-4ff1-a684-1457cfb09ad7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/js/learn.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/learn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/js/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/js/upload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/learn.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/learn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/poses/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/poses/1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/poses/9.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/poses/9.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/video.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/11.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/12.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/13.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/poses/9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/10.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/11.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/12.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/13.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/2.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/4.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/5.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/7.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/8.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/videos/9.mp4" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -234,6 +247,23 @@
               <item name="IF" type="b2602c69:ProjectViewProjectNode" />
               <item name="IF" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IF" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IF" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="poses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IF" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IF" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="videos" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -297,12 +327,12 @@
       <workItem from="1542452114489" duration="10446000" />
       <workItem from="1542526170731" duration="9585000" />
       <workItem from="1542600305192" duration="3000" />
-      <workItem from="1542633082436" duration="2282000" />
+      <workItem from="1542633082436" duration="2375000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83765000" />
+    <option name="totallyTimeSpent" value="83858000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
