@@ -22,7 +22,7 @@ import {compareFrame} from "./compare";
 
 const cameraWidth = 900;
 const cameraHeight = 750;
-const videoWidth = 420;
+const videoWidth = 900;
 const videoHeight = 750;
 const stats = new Stats();
 
@@ -115,8 +115,13 @@ async function loadVideo() {
     return video;
 }
 
+/**
+ * learn video
+ * videoID: ./public/videos/xxx.mp4
+ */
+
 const videoConfig ={
-    videoID:'9',
+    videoID:'1',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/getVideoPoses',
     videoState:'ended',
@@ -124,8 +129,9 @@ const videoConfig ={
 
 const netState = {
     algorithm: 'single-pose',
-    windowRadius:3,
+    windowRadius:2,
     isPoseOut:'false',
+    cameraRotate:90,
     input: {
         mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
         outputStride: 16,
@@ -242,7 +248,6 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
                 videoPose = videoPoses[i].pose;
                 let result = compareFrame(cameraPose,videoPose,0.5);
 
-                // notice=result.notice;
                 isPass=result.isPass;
 
                 if (isPass){
@@ -251,16 +256,13 @@ function comparePoseByVideoCurrentTime(video,cameraPose,videoPoses,timeList) {
 
             }
 
-            // console.log('currentTime: '+video.currentTime+'choose: '+timeList[index]);
-
-
-
-            // if (isPass){
-            //     video.play();
-            // }
-            // else{
-            //     video.pause();
-            // }
+            //is pass?
+            if (isPass){
+                video.play();
+            }
+            else{
+                video.pause();
+            }
 
             // for (var key in notice){
             //     output.textContent += key+': '+notice[key]+'\t' ;

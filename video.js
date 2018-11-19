@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const probe = require('node-ffprobe');
 
 
 
@@ -27,7 +28,10 @@ module.exports={
     getVideoConfig:function (id) {
         const filePath = path.resolve('./public/videos/'+id+'.mp4');
         // var stream = fs.createReadStream(filePath)
-        let stat = fs.statSync(filePath)
-        return stat;
+        let config;
+        probe(filePath,function (err,probeData) {
+            console.log(probeData);
+        });
+        return config;
     }
 }

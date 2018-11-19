@@ -19,9 +19,7 @@ import Stats from 'stats.js';
 import {drawKeypoints, drawSkeleton} from './util';
 import $ from 'jquery'
 
-const cameraWidth = 900;
-const cameraHeight = 750;
-const videoWidth = 420;
+const videoWidth = 900;
 const videoHeight = 750;
 const stats = new Stats();
 
@@ -79,8 +77,13 @@ async function loadVideo() {
     return video;
 }
 
+/**
+ * upload video
+ * videoID: ./public/videos/xxx.mp4
+ */
+
 const videoConfig ={
-    videoID:'9',
+    videoID:'1',
     videoStreamURL:'http://localhost:3000/stream/videos',
     videoPoseAPI:'http://localhost:1234/api/setVideoPoses',
     videoState:'ended',
